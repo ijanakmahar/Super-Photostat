@@ -1,17 +1,18 @@
-// HTML elements ko select karein
+// HTML ke elements ko select karein
 const scannerSection = document.getElementById('scanner-section');
 const formSection = document.getElementById('form-section');
 const deliveryForm = document.getElementById('delivery-form');
 const trackingNumberInput = document.getElementById('tracking-number');
 const scannerMessage = document.getElementById('scanner-message');
 
-// Barcode scanner ko initialize karein
+// Barcode scanner ko shuru karne ka function
 function initQuagga() {
+    // Quagga library ko setup karein
     Quagga.init({
         inputStream: {
             name: "Live",
             type: "LiveStream",
-            target: document.getElementById('barcode-scanner-video'), // Video element ko target karein
+            target: document.getElementById('barcode-scanner-video'),
             constraints: {
                 width: 640,
                 height: 480,
@@ -19,7 +20,7 @@ function initQuagga() {
             },
         },
         decoder: {
-            readers: ["ean_reader", "code_128_reader"] // Barcode types
+            readers: ["ean_reader", "code_128_reader"]
         }
     }, function(err) {
         if (err) {
@@ -27,34 +28,34 @@ function initQuagga() {
             scannerMessage.textContent = "Error: Camera not found.";
             return;
         }
-        Quagga.start();
+        Quagga.start(); // Scanner shuru karein
         scannerMessage.textContent = "Scanning...";
         console.log("QuaggaJS started.");
     });
 
-    // Barcode detect hone par yeh function chalega
+    // Jab barcode mil jaye tab yeh function chalega
     Quagga.onDetected(function(result) {
         Quagga.stop(); // Scanner ko rok dein
         console.log("Barcode detected:", result.codeResult.code);
         
-        // Tracking number ko form field mein bharein
+        // Scanned number ko form mein bharein
         trackingNumberInput.value = result.codeResult.code;
 
-        // Scanner section ko chhupayein aur form section ko dikhayein
+        // Scanner ko chhupayein aur form ko dikhayein
         scannerSection.style.display = 'none';
         formSection.style.display = 'block';
 
-        // Date field mein aaj ki date bharein
+        // Date field mein aaj ki date apne aap bharein
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').value = today;
     });
 }
 
-// Jab form submit hoga tab yeh function chalega
+// Form submit hone par yeh function chalega
 deliveryForm.addEventListener('submit', function(event) {
     event.preventDefault(); // Default form submission ko rok dein
-
-    // Form se saara data collect karein
+    
+    // Form se saare data ko ek object mein rakhein
     const data = {
         trackingNumber: trackingNumberInput.value,
         courierType: document.getElementById('courier-type').value,
@@ -62,29 +63,28 @@ deliveryForm.addEventListener('submit', function(event) {
         weightCategory: document.getElementById('weight-category').value,
         date: document.getElementById('date').value,
     };
-
-    // Data ko Google Sheets par bhej do
+    
+    // Ab is data ko Google Apps Script URL par bhej dein
     sendDataToGoogleSheets(data);
 });
 
-// Yeh function data ko Google Sheets par bhejne ka kaam karega
-// IMPORTANT: Yeh sirf ek placeholder function hai.
-// Asli logic ke liye, hum Google Apps Script ka use karenge.
+// Data ko Google Sheets par bhejne ka function
 function sendDataToGoogleSheets(data) {
-    const url = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // Google Apps Script ka URL yahan paste karein
+    // IMPORTANT: Apne Google Apps Script ke deployed URL ko yahan paste karein
+    const url = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
 
     fetch(url, {
         method: 'POST',
-        mode: 'no-cors', // CORS policy ko bypass karne ke liye
+        body: JSON.stringify(data),
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        mode: 'no-cors' // Yeh zaroori hai
     })
     .then(response => {
-        // Response ko handle karein
+        // Data bhejne ke baad user ko batayein aur page reload karein
         alert('Data submitted successfully!');
-        window.location.reload(); // Page ko refresh kar dein taaki naya scan ho sake
+        window.location.reload(); 
     })
     .catch(error => {
         console.error('Error:', error);
@@ -92,5 +92,5 @@ function sendDataToGoogleSheets(data) {
     });
 }
 
-// Page load hone par scanner ko shuru karein
+// Page load hone par scanner shuru karein
 window.onload = initQuagga;

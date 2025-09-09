@@ -71,7 +71,7 @@ deliveryForm.addEventListener('submit', function(event) {
 // Data ko Google Sheets par bhejne ka function
 function sendDataToGoogleSheets(data) {
     // IMPORTANT: Apne Google Apps Script ke deployed URL ko yahan paste karein
-    const url = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
+    const url = 'https://script.google.com/macros/s/AKfycbwJ0wAmCzTShZjymOdjUvkIAQmAJlvTQ1gMTZ19urqe2kOvJtJ2fiGBV6v_SkDtE7o/exec'; 
 
     fetch(url, {
         method: 'POST',

@@ -46,7 +46,7 @@ deliveryForm.addEventListener('submit', function(event) {
 
 // Data ko Google Sheets par bhejne ka function
 function sendDataToGoogleSheets(data) {
-    const url = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
+    const url = 'AKfycbzP-ouwzlyHue65v1MD-xrKqA5ivOdVVBF0DH9oTN-c8KCPAyjTIsOvlEwFu0NOJ1Gl'; 
 
     fetch(url, {
         method: 'POST',

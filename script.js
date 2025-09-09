@@ -10,15 +10,21 @@ function initQuagga() {
     // Quagga library ko setup karein
     Quagga.init({
         inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.getElementById('barcode-scanner-video'),
-            constraints: {
-                width: 640,
-                height: 480,
-                facingMode: "environment" // Piche wala camera
-            },
-        },
+    name: "Live",
+    type: "LiveStream",
+    target: document.getElementById('barcode-scanner-video'),
+    constraints: {
+        width: 640,
+        height: 480,
+        // Yahan badlav karna hai
+        facingMode: { exact: "environment" } 
+        // Ya agar yeh kaam na kare, to neeche wali line try karo
+        // facingMode: { exact: "user" }
+        // Ya isko hata kar direct object use karo
+        // facingMode: "environment"
+    },
+},
+
         decoder: {
             readers: ["ean_reader", "code_128_reader"]
         }

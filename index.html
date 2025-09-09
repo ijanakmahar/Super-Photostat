@@ -1,14 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Barcode Scanner Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courier Tracking System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
 </head>
 <body>
-  <h1>Welcome to Barcode Scanner</h1>
-  <ul>
-    <li><a href="scanner-qr.html">QR Code Scanner</a></li>
-    <li><a href="scanner-barcode-1d.html">Barcode Scanner (1D)</a></li>
-  </ul>
+
+    <header>
+        <h1>Courier Tracking</h1>
+    </header>
+
+    <main>
+        <section id="scanner-section">
+            <h2>Scan Barcode</h2>
+            <div id="barcode-scanner-container">
+                <video id="barcode-scanner-video"></video>
+            </div>
+            <div id="scanner-message">Scanning...</div>
+        </section>
+
+        <section id="form-section" style="display: none;">
+            <h2>Enter Details</h2>
+            <form id="delivery-form">
+                
+                <div class="form-group">
+                    <label for="tracking-number">Tracking Number:</label>
+                    <input type="text" id="tracking-number" readonly required>
+                </div>
+
+                <div class="form-group">
+                    <label for="courier-type">Courier Type:</label>
+                    <select id="courier-type" required>
+                        <option value="">--Select--</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Parcel">Parcel</option>
+                        <option value="Prime">Prime</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="place">Place:</label>
+                    <input type="text" id="place" placeholder="Enter place name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="weight-category">Weight Category:</label>
+                    <select id="weight-category" required>
+                        <option value="">--Select--</option>
+                        <option value="250g">250g</option>
+                        <option value="500g">500g</option>
+                        <option value="1kg">1kg</option>
+                        <option value="2kg">2kg</option>
+                        <option value="3kg">3kg</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

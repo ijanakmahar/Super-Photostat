@@ -33,12 +33,13 @@ deliveryForm.addEventListener('submit', function(event) {
     event.preventDefault(); // Default form submission ko rok dein
 
     const data = {
-        trackingNumber: trackingNumberInput.value,
-        courierType: document.getElementById('courier-type').value,
-        place: document.getElementById('place').value,
-        weightCategory: document.getElementById('weight-category').value,
-        date: document.getElementById('date').value,
-    };
+    trackingNumber: trackingNumberInput.value,
+    courierType: document.getElementById('courier-type').value,
+    place: document.getElementById('place').value,
+    zone: document.getElementById('zone').value, // Yeh nayi line hai
+    weightCategory: document.getElementById('weight-category').value,
+    date: document.getElementById('date').value,
+};
     
     sendDataToGoogleSheets(data);
 });

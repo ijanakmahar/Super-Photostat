@@ -9,10 +9,26 @@
   <h1>QR Code Scanner</h1>
   <div id="reader" style="width:300px;"></div>
   <p id="result"></p>
+
   <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwvRwZGyisKl6fdYLup9Z2UWvOcEqcgYN25Bj4Q_rERjXOPqjn2Tn-cz0IqREUtSTQ6/exec"; // <-- yahan apna URL paste karo
+
+    function sendToSheet(code) {
+      fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify({ code: code }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.text())
+      .then(data => console.log("Sheet Response:", data))
+      .catch(err => console.error("Error:", err));
+    }
+
     function onScanSuccess(decodedText, decodedResult) {
       document.getElementById("result").innerText = decodedText;
+      sendToSheet(decodedText);
     }
+
     let html5QrcodeScanner = new Html5QrcodeScanner(
       "reader", { fps: 10, qrbox: 250 });
     html5QrcodeScanner.render(onScanSuccess);

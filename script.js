@@ -46,7 +46,7 @@ deliveryForm.addEventListener('submit', function(event) {
 
 // Data ko Google Sheets par bhejne ka function
 function sendDataToGoogleSheets(data) {
-    const url = 'AKfycbzP-ouwzlyHue65v1MD-xrKqA5ivOdVVBF0DH9oTN-c8KCPAyjTIsOvlEwFu0NOJ1Gl'; 
+    const url = 'https://script.google.com/macros/s/AKfycbzP-ouwzlyHue65v1MD-xrKqA5ivOdVVBF0DH9oTN-c8KCPAyjTIsOvlEwFu0NOJ1Gl/exec'; 
 
     fetch(url, {
         method: 'POST',

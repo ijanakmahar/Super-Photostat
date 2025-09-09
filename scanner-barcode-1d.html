@@ -9,11 +9,26 @@
   <h1>1D Barcode Scanner</h1>
   <video id="video" width="300" height="200" style="border:1px solid black"></video>
   <p id="result"></p>
+
   <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwvRwZGyisKl6fdYLup9Z2UWvOcEqcgYN25Bj4Q_rERjXOPqjn2Tn-cz0IqREUtSTQ6/exec"; // <-- yahan apna URL paste karo
+
+    function sendToSheet(code) {
+      fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify({ code: code }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.text())
+      .then(data => console.log("Sheet Response:", data))
+      .catch(err => console.error("Error:", err));
+    }
+
     const codeReader = new ZXing.BrowserBarcodeReader();
     codeReader.decodeFromVideoDevice(null, 'video', (result, err) => {
       if (result) {
         document.getElementById('result').innerText = result.text;
+        sendToSheet(result.text);
       }
     });
   </script>

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courier Tracking System</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
+    
+    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
 
@@ -16,10 +17,7 @@
     <main>
         <section id="scanner-section">
             <h2>Scan Barcode</h2>
-            <div id="barcode-scanner-container">
-                <video id="barcode-scanner-video"></video>
-            </div>
-            <div id="scanner-message">Scanning...</div>
+            <div id="reader" style="width:100%;"></div>
         </section>
 
         <section id="form-section" style="display: none;">

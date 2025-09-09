@@ -1,0 +1,112 @@
+/* Basic page settings */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Main content container */
+main {
+    width: 90%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Headings */
+h1, h2 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+/* Scanner section styling */
+#scanner-section {
+    text-align: center;
+}
+
+#barcode-scanner-container {
+    width: 100%;
+    height: 300px; /* Scanner ka size */
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+#barcode-scanner-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#scanner-message {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Form styling */
+#form-section {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Padding aur border width ko include karega */
+}
+
+input[readonly] {
+    background-color: #e9e9e9;
+    cursor: not-allowed;
+}
+
+/* Submit button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 600px) {
+    main {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+}
